@@ -928,7 +928,8 @@ records:
       orig: "Купнородцы (близнюки)"
       uk: "Купнородці (близнюки)"
       en: "Twins"
-- folio: "175"
+
+  - folio: "175"
     num_m: "13"
     num_f: ""
     birth_jul: "09.02.1881"
@@ -2053,7 +2054,7 @@ records:
       orig: ""
       uk: ""
       en: ""
-- folio: "180"
+  - folio: "180"
     num_m: "24"
     num_f: ""
     birth_jul: "06.04.1881"
@@ -2836,7 +2837,8 @@ records:
       orig: ""
       uk: ""
       en: ""
-- folio: "185"
+
+  - folio: "185"
     num_m: ""
     num_f: "38"
     birth_jul: "02.07.1881"
@@ -3873,7 +3875,7 @@ records:
       orig: ""
       uk: ""
       en: ""
-- folio: "190"
+  - folio: "190"
     num_m: ""
     num_f: "48"
     birth_jul: "19.08.1881"
@@ -4654,6 +4656,7 @@ records:
       orig: ""
       uk: ""
       en: ""
+
   - folio: "193"
     num_m: ""
     num_f: "62"
@@ -4725,6 +4728,7 @@ records:
       orig: ""
       uk: ""
       en: ""
+
   - folio: "194"
     num_m: "68"
     num_f: ""
@@ -4759,6 +4763,7 @@ records:
       orig: ""
       uk: ""
       en: ""
+
   - folio: "194"
     num_m: "69"
     num_f: ""
@@ -4795,6 +4800,7 @@ records:
       orig: ""
       uk: ""
       en: ""
+
   - folio: "194"
     num_m: ""
     num_f: "64"
