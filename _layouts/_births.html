@@ -1,0 +1,230 @@
+---
+layout: default
+title: "1881 — Покровська церква м. Василькова (Народження)"
+default_lang: uk
+---
+
+{% assign book = site.data.vasylkiv.pokrovska.1881_narodzhennia %}
+{% assign dlang = page.default_lang | default: "uk" %}
+
+<style>
+  .lang-view[data-lang="orig"] .i18n:not(.lang-orig),
+  .lang-view[data-lang="uk"]   .i18n:not(.lang-uk),
+  .lang-view[data-lang="en"]   .i18n:not(.lang-en) {
+    display: none;
+  }
+  /* Режим паралельного перегляду (Оригінал + Українська) */
+  .lang-view[data-lang="dual"] .i18n.lang-en {
+    display: none;
+  }
+  .lang-view[data-lang="dual"] .i18n.lang-orig {
+    display: block;
+    color: #555;
+    font-size: 0.9em;
+    border-bottom: 1px dashed #ddd;
+    margin-bottom: 4px;
+    padding-bottom: 2px;
+  }
+  .lang-view[data-lang="dual"] .i18n.lang-uk {
+    display: block;
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .lang-btn {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #f8f9fa;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .lang-btn.active {
+    background: #0366d6;
+    color: #fff;
+    border-color: #0366d6;
+  }
+  #search-input {
+    flex: 1;
+    min-width: 240px;
+    padding: 7px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  table.metric-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  table.metric-table th, table.metric-table td {
+    border: 1px solid #dfe2e5;
+    padding: 8px;
+    vertical-align: top;
+  }
+  table.metric-table th {
+    background-color: #f6f8fa;
+  }
+</style>
+
+<div id="metric-container" class="lang-view" data-lang="{{ dlang }}">
+
+  <h2>
+    <span class="i18n lang-orig">{{ book.meta.title.orig }}</span>
+    <span class="i18n lang-uk">{{ book.meta.title.uk }}</span>
+    <span class="i18n lang-en">{{ book.meta.title.en }}</span>
+  </h2>
+
+  <p>
+    <strong>
+      <span class="i18n lang-orig">
+          {{ book.meta.parish.orig }} ({{ book.meta.settlement.orig }})
+      </span>
+      <span class="i18n lang-uk">
+          {{ book.meta.parish.uk }} ({{ book.meta.settlement.uk }})
+      </span>
+      <span class="i18n lang-en">
+          {{ book.meta.parish.en }} ({{ book.meta.settlement.en }})
+      </span>
+    </strong><br>
+    <span class="i18n lang-orig">{{ book.meta.archive.orig }}</span>
+    <span class="i18n lang-uk">{{ book.meta.archive.uk }}</span>
+    <span class="i18n lang-en">{{ book.meta.archive.en }}</span>
+    — <a href="{{ book.meta.source_url }}" target="_blank" rel="noopener">
+        Archium ЦДІАК
+    </a>
+  </p>
+
+  <div class="toolbar">
+    <div>
+      <button class="lang-btn" data-set-lang="orig">Оригінал (дореф.)</button>
+      <button class="lang-btn" data-set-lang="uk">Українська</button>
+      <button class="lang-btn" data-set-lang="en">English</button>
+      <button class="lang-btn" data-set-lang="dual">Оригінал + Укр.</button>
+    </div>
+    <input type="search" id="search-input"
+        placeholder="Пошук / Search (прізвище, ім'я, аркуш, дата)...">
+  </div>
+
+  <table class="metric-table">
+    <thead>
+      <tr>
+        <th>
+          <span class="i18n lang-orig">Арк.</span>
+          <span class="i18n lang-uk">Арк.</span>
+          <span class="i18n lang-en">Folio</span>
+        </th>
+        <th>
+          <span class="i18n lang-orig">№ (Ч/Ж)</span>
+          <span class="i18n lang-uk">№ (Ч/Ж)</span>
+          <span class="i18n lang-en">No. (M/F)</span>
+        </th>
+        <th>
+          <span class="i18n lang-orig">Дати (юл. / грег.)</span>
+          <span class="i18n lang-uk">Дати (юл. / грег.)</span>
+          <span class="i18n lang-en">Dates (Jul / Greg)</span>
+        </th>
+        <th>
+          <span class="i18n lang-orig">Дитина</span>
+          <span class="i18n lang-uk">Дитина</span>
+          <span class="i18n lang-en">Child</span>
+        </th>
+        <th>
+          <span class="i18n lang-orig">Батьки</span>
+          <span class="i18n lang-uk">Батьки</span>
+          <span class="i18n lang-en">Parents</span>
+        </th>
+        <th>
+          <span class="i18n lang-orig">Хрещені батьки</span>
+          <span class="i18n lang-uk">Хрещені батьки</span>
+          <span class="i18n lang-en">Godparents</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="metric-tbody">
+      {% for row in book.records %}
+      <tr>
+        <td>{{ row.folio }}</td>
+        <td>
+          {% if row.num_m != "" %}Ч: {{ row.num_m }}{% endif %}
+          {% if row.num_m != "" and row.num_f != "" %}<br>{% endif %}
+          {% if row.num_f != "" %}Ж: {{ row.num_f }}{% endif %}
+        </td>
+        <td style="white-space: nowrap;">
+          <b>Н:</b> {{ row.birth_jul }} <small>
+              ({{ row.birth_greg }})
+          </small><br>
+          <b>Х:</b> {{ row.baptism_jul }} <small>
+              ({{ row.baptism_greg }})
+          </small>
+        </td>
+        <td>
+          <strong>
+            <span class="i18n lang-orig">{{ row.child.orig }}</span>
+            <span class="i18n lang-uk">{{ row.child.uk }}</span>
+            <span class="i18n lang-en">{{ row.child.en }}</span>
+          </strong>
+        </td>
+        <td>
+          <span class="i18n lang-orig">{{ row.parents.orig }}</span>
+          <span class="i18n lang-uk">{{ row.parents.uk }}</span>
+          <span class="i18n lang-en">{{ row.parents.en }}</span>
+        </td>
+        <td>
+          <span class="i18n lang-orig">{{ row.godparents.orig }}</span>
+          <span class="i18n lang-uk">{{ row.godparents.uk }}</span>
+          <span class="i18n lang-en">{{ row.godparents.en }}</span>
+          {% if row.notes.orig != "" or row.notes.uk != "" %}
+          <div style="margin-top:4px; font-style:italic; color:#666;">
+            <span class="i18n lang-orig">Прим.: {{ row.notes.orig }}</span>
+            <span class="i18n lang-uk">Прим.: {{ row.notes.uk }}</span>
+            <span class="i18n lang-en">Note: {{ row.notes.en }}</span>
+          </div>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function() {
+  const container = document.getElementById('metric-container');
+  const buttons = document.querySelectorAll('.lang-btn');
+  const searchInput = document.getElementById('search-input');
+  const rows = document.querySelectorAll('#metric-tbody tr');
+
+  function setLang(lang) {
+    container.setAttribute('data-lang', lang);
+    buttons.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-set-lang') === lang);
+    });
+    const url = new URL(window.location);
+    url.searchParams.set('lang', lang);
+    window.history.replaceState({}, '', url);
+  }
+
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  if (['orig', 'uk', 'en', 'dual'].includes(urlLang)) {
+    setLang(urlLang);
+  } else {
+    setLang(container.getAttribute('data-lang'));
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.getAttribute('data-set-lang')));
+  });
+
+  searchInput.addEventListener('input', function(e) {
+    const q = e.target.value.toLowerCase().trim();
+    rows.forEach(tr => {
+      tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+})();
+</script>
