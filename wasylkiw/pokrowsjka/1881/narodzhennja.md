@@ -1,5 +1,5 @@
 ---
-layout: _births
+layout: narodzhennja
 title: "1881 — Покровська церква м. Василькова (Народження)"
 city: wasylkiw
 church: pokrowsjka
