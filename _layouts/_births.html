@@ -1,10 +1,8 @@
 ---
 layout: default
-title: "1881 — Покровська церква м. Василькова (Народження)"
-default_lang: uk
 ---
 
-{% assign book = site.data.vasylkiv.pokrovska.1881.narodzhennia %}
+{% assign book = site.data[page.city][page.church][page.year][page.book] %}
 {% assign dlang = page.default_lang | default: "uk" %}
 
 <style>
@@ -13,7 +11,6 @@ default_lang: uk
   .lang-view[data-lang="en"]   .i18n:not(.lang-en) {
     display: none;
   }
-  /* Режим паралельного перегляду (Оригінал + Українська) */
   .lang-view[data-lang="dual"] .i18n.lang-en {
     display: none;
   }
@@ -73,6 +70,8 @@ default_lang: uk
 
 <div id="metric-container" class="lang-view" data-lang="{{ dlang }}">
 
+  <p><a href="{{ '/' | relative_url }}">← На головну</a></p>
+
   <h2>
     <span class="i18n lang-orig">{{ book.meta.title.orig }}</span>
     <span class="i18n lang-uk">{{ book.meta.title.uk }}</span>
@@ -81,22 +80,14 @@ default_lang: uk
 
   <p>
     <strong>
-      <span class="i18n lang-orig">
-          {{ book.meta.parish.orig }} ({{ book.meta.settlement.orig }})
-      </span>
-      <span class="i18n lang-uk">
-          {{ book.meta.parish.uk }} ({{ book.meta.settlement.uk }})
-      </span>
-      <span class="i18n lang-en">
-          {{ book.meta.parish.en }} ({{ book.meta.settlement.en }})
-      </span>
+      <span class="i18n lang-orig">{{ book.meta.parish.orig }} ({{ book.meta.settlement.orig }})</span>
+      <span class="i18n lang-uk">{{ book.meta.parish.uk }} ({{ book.meta.settlement.uk }})</span>
+      <span class="i18n lang-en">{{ book.meta.parish.en }} ({{ book.meta.settlement.en }})</span>
     </strong><br>
     <span class="i18n lang-orig">{{ book.meta.archive.orig }}</span>
     <span class="i18n lang-uk">{{ book.meta.archive.uk }}</span>
     <span class="i18n lang-en">{{ book.meta.archive.en }}</span>
-    — <a href="{{ book.meta.source_url }}" target="_blank" rel="noopener">
-        Archium ЦДІАК
-    </a>
+    — <a href="{{ book.meta.source_url }}" target="_blank" rel="noopener">Скан у ЦДІАК (Archium)</a>
   </p>
 
   <div class="toolbar">
@@ -106,8 +97,7 @@ default_lang: uk
       <button class="lang-btn" data-set-lang="en">English</button>
       <button class="lang-btn" data-set-lang="dual">Оригінал + Укр.</button>
     </div>
-    <input type="search" id="search-input"
-        placeholder="Пошук / Search (прізвище, ім'я, аркуш, дата)...">
+    <input type="search" id="search-input" placeholder="Пошук / Search (прізвище, ім'я, аркуш, дата)...">
   </div>
 
   <table class="metric-table">
@@ -155,12 +145,8 @@ default_lang: uk
           {% if row.num_f != "" %}Ж: {{ row.num_f }}{% endif %}
         </td>
         <td style="white-space: nowrap;">
-          <b>Н:</b> {{ row.birth_jul }} <small>
-              ({{ row.birth_greg }})
-          </small><br>
-          <b>Х:</b> {{ row.baptism_jul }} <small>
-              ({{ row.baptism_greg }})
-          </small>
+          <b>Н:</b> {{ row.birth_jul }} <small>({{ row.birth_greg }})</small><br>
+          <b>Х:</b> {{ row.baptism_jul }} <small>({{ row.baptism_greg }})</small>
         </td>
         <td>
           <strong>
