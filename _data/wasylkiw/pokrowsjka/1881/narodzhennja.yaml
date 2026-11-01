@@ -6593,7 +6593,7 @@ records:
       orig: ""
       uk: ""
       en: ""
-- folio: "201"
+  - folio: "201"
     num_m: "84"
     num_f: ""
     birth_jul: "23.11.1881"
